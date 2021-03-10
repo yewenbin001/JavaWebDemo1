@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Demo0304:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Demo0304_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Demo0304/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Demo0304" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="module" name="jsp-api" module-name="Demo0305" />
+          <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.11.4" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.22" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

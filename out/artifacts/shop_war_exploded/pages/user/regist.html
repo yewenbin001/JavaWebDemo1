@@ -1,0 +1,162 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>网上商城会员注册页面</title>
+		<link type="text/css" rel="stylesheet" href="../../static/css/style.css">
+		<link type="text/css" href="../../static/css/bootstrap.min.css" rel="stylesheet" />
+		<!--<script src="static/js/jquery-1.11.3.min.js"></script>-->
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="../../static/js/bootstrap.js"></script>
+		<style type="text/css">
+			.login_form {
+				height: 420px;
+				margin-top: 25px;
+			}
+		</style>
+		<script type="text/javascript">
+			function changeImg() {
+				console.log(0);
+				$('#imgID').attr("src", "http://localhost:8080/shop/verifyCode.do?" + new Date());
+			}
+			//获得指定id的值
+			function val(objId) {
+				return document.getElementById(objId).value;
+			}
+			//显示错误提示信息
+			function showTip(errObjId, text) {
+				var showObj = document.getElementById(errObjId);
+				showObj.innerHTML = text;
+				showObj.style.display = "block";
+			}
+			//隐藏错误提示信息
+			function hideTip(errObjId) {
+				var showObj = document.getElementById(errObjId);
+				showObj.innerHTML = "";
+				showObj.style.display = "none";
+			}
+			//获得焦点
+			function focus(objId) {
+				//指定标签获得焦点
+				document.getElementById(objId).focus();
+			}
+
+			function check() {
+				var focusObjId;
+				var loginName = val("username");
+				var nameRule = /^[a-zA-Z0-9_-]{4,16}$/;
+				if (!(nameRule.test($("#username").val()))) {
+					showTip("usernameTip", "用户名错误");
+					focusObjId = "username";
+				} else {
+					hideTip("usernameTip");
+				}
+				var loginName = val("password");
+				var passwordRule = /^[a-zA-Z0-9_-]{4,16}$/;
+				if (!(passwordRule.test($("#password").val()))) {
+					showTip("pwdTip", "密码错误");
+					focusObjId = "password";
+				} else {
+					hideTip("pwdTip");
+				}
+				if ($("#password").val() != $("#repwd").val()) {
+					showTip("repwdTip", "密码错误");
+					focusObjId = "password";
+				} else {
+					hideTip("repwdTip");
+				}
+				var loginName = val("email");
+				var emailRule = /^[a-zA-Z\d]+([-_.][a-zA-Z\d]+)*@([a-zA-Z\d]+[-.])+[a-zA-Z\d]{2,4}$/;
+				if (!emailRule.test($("#email").val())) {
+					showTip("emailTip", "邮箱错误");
+					focusObjId = "email";
+				}
+				else {
+					hideTip("emailTip");
+				}
+				var loginName = val("code");
+				if (!$("#code").val()) {
+					showTip("codeTip", "验证码错误");
+					focusObjId = "code";
+				}else {
+					hideTip("codeTip");
+				}
+				//如果有需要获得焦点 表示校验没有通过
+				if (focusObjId) {
+					focus(focusObjId);
+					return false;
+				}
+				return true;
+			}
+		</script>
+
+	</head>
+	<body>
+		<div id="login_header">
+			<img class="logo_img" alt="" src="../../static/img/logo.gif">
+		</div>
+
+		<div class="login_banner">
+
+			<div id="l_content">
+				<span class="login_word">欢迎注册</span>
+			</div>
+
+			<div id="content">
+				<div class="login_form">
+					<div class="login_box">
+						<div class="tit">
+							<h1>注册网上商城会员</h1>
+							<span class="errorMsg"></span>
+						</div>
+						<div class="form">
+							<form action="/shop/regist" onsubmit="return check()" method="post">
+								<br><label>用户名称：</label>
+								<input class=" itxt" type="text" placeholder="请输入用户名" autocomplete="off" tabindex="1" name="username" id="username" /><span>
+									<span id="usernameTip" color="red"></span>
+								</span>
+								<br />
+								<br />
+								<label>用户密码：</label>
+								<input class="itxt" type="password" placeholder="请输入密码" autocomplete="off" tabindex="1" name="password" id="password" />
+								<span>
+									<span id="pwdTip" color="red"></span>
+								</span>
+								<br />
+								<br />
+								<label>确认密码：</label>
+								<input class="itxt" type="password" placeholder="确认密码" autocomplete="off" tabindex="1" name="repwd" id="repwd" /><span>
+									<span id="repwdTip" color="red"></span>
+								</span>
+								<br />
+								<br />
+								<label>电子邮件：</label>
+								<input class="itxt" type="text" placeholder="请输入邮箱地址" autocomplete="off" tabindex="1" name="email" id="email" /><span>
+									<span id="emailTip" color="red"></span>
+								</span>
+								<br />
+								<br />
+								<label>验证码：</label>
+								<input class="itxt" type="text" style="width: 150px;" id="code" name="code" />
+								<img src="http://localhost:8080/shop/verifyCode.do" id="imgID"  style="float: right; margin-right: 40px"/>
+								<span onclick="changeImg()" style="float:right">点击刷新</span>
+
+								<span id="codeTip" style="color: red; "></span>
+
+								<br />
+								<br />
+								<input type="submit" value="注册" id="sub_btn" />
+
+							</form>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="bottom">
+			<span>
+				网上商城.Copyright &copy;2020
+			</span>
+		</div>
+	</body>
+</html>
